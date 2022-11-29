@@ -1,0 +1,38 @@
+<div class="container py-5">
+    <input *ngIf="movieData.length || searchList.length" [(ngModel)]="term" (change)="searchMovie()" type="text" class="form-control mt-2 mb-5 bg-transparent text-white" placeholder="Search ....">
+
+  
+    <div class="row" *ngIf="movieData.length ">
+
+        <div  class="col-md-2" *ngFor="let movie of movieData">
+            <app-item *ngIf="!term.length"  [apiData]="movie" ></app-item>
+        </div>
+    </div>
+    <div class="row" *ngIf="searchList.length && term.length">
+        <div class="col-md-2 mb-5" *ngFor="let movie of searchList">
+               <div class="content position-relative pointer w-100">
+    <img class="w-100 h-100 rounded" *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500'+ movie.poster_path" alt="">
+    <img class="w-100 h-100 rounded" *ngIf="!movie.poster_path" src="../../assets/images/download.png" alt="">
+
+    <div class="overlay" [routerLink]="['/details/',movie.id , 'movie']">
+        <p class="p-2 w-100 text-white">{{movie.overview | split : 30}}</p>
+    </div>
+   </div>         
+   <h5 class="fs-5 mt-3"> {{movie.name}} </h5>
+        </div>
+    </div>
+    <app-loading *ngIf="term.length && !searchList.length"></app-loading>
+    <app-loading *ngIf="!movieData.length"></app-loading>
+
+
+</div>
+<nav *ngIf="movieData.length && !searchList.length" aria-label="..." class="d-flex justify-content-center mb-3">
+    <ul class="pagination">
+    
+      <li class="page-item" *ngFor="let page of pages" (click)="getMovie(page)">
+        <a class="page-link pointer bg-transparent text-white">{{page}}</a>
+    </li>
+  
+     
+    </ul>
+  </nav>

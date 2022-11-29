@@ -1,0 +1,39 @@
+<div class="container py-4">
+    <app-loading *ngIf="!details"></app-loading>
+    <div class="row" *ngIf="details">
+        <div class="col-md-4">
+            <img class="w-100 rounded" *ngIf="details.poster_path" [src]="'https://image.tmdb.org/t/p/w500'+ details.poster_path" alt="">
+            <img class="w-100 rounded" *ngIf="details.profile_path" [src]="'https://image.tmdb.org/t/p/w500'+ details.profile_path" alt="">
+            <img class="w-100 rounded" *ngIf="!details.profile_path && !details.poster_path" src="./assets/images/download.png" alt="">
+
+
+
+        </div>
+        <div class="col-md-8">
+            <div class="content">
+                <h1 class="mt-2">{{details.title}} {{details.name}}</h1>
+                <h5 class="text-muted">{{details.tagline}}</h5>
+                <ul class="list-unstyled d-flex mt-4">
+                    <li *ngFor="let genre of details.genres" class="mx-2 bg-info p-1 rounded">{{genre.name}}</li>
+                </ul>
+                <ul class="list-unstyled mt-4">
+                    <li class="mt-2 ms-2"  *ngIf="details.vote_average" ><span class="fw-bolder">Vote :</span> {{details.vote_average}} </li>
+                    <li class="mt-2 ms-2" *ngIf="details.vote_count" ><span class="fw-bolder">Vote Count :</span> {{details.vote_count}}</li>
+                    <li class="mt-2 ms-2" *ngIf="details.popularity" > <span class="fw-bolder">Popularity :</span> {{details.popularity}}</li>
+                    <li class="mt-2 ms-2" *ngIf="details.release_date"> <span class="fw-bolder">Release Date :</span> {{details.release_date}}</li>
+                    <li class="mt-2 ms-2" *ngIf="details.birthday"> <span class="fw-bolder">Birthday :</span> {{details.birthday}}</li>
+                    <li class="mt-2 ms-2" *ngIf="details.deathday"> <span class="fw-bolder">Deathday :</span> {{details.deathday}</li>
+                    <li class="mt-2 ms-2" *ngIf="details.place_of_birth"> <span class="fw-bolder">Place of Birth :</span> {{details.place_of_birth}}</li>
+
+
+
+
+
+                </ul>
+                <p class="text-muted mx-2">{{details.overview}}</p>
+                <p class="text-muted mx-2">{{details.biography}}</p>
+
+            </div>
+        </div>
+    </div>
+</div>

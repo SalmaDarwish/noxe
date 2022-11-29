@@ -1,0 +1,84 @@
+<div class="container py-5">
+    <h2 class="mb-4">Registration Form </h2>
+    <div *ngIf="errorFromSignUp" class="alert alert-danger">{{errorFromSignUp}}</div>
+    <form [formGroup]="registerForm" class="w-75 mx-auto" (ngSubmit)="registerUser(registerForm)">
+        <div class="form-group mb-3 form-floating">
+            <input type="text" id="floatingInput" class="form-control mb-1" placeholder="Enter Your First Name" id="first-name" formControlName="first_name">
+            <label for="first-name" for="floatingInput" class="text-muted"> First Name </label>
+            <div *ngIf="registerForm.get('first_name')?.errors && registerForm.get('first_name')?.touched" class="alert alert-danger p-2 d-flex flex-row justify-content-between mb-2">
+                <p *ngIf="registerForm.get('first_name')?.getError('required')" class="mb-0">This field is required</p>
+                <p *ngIf="registerForm.get('first_name')?.getError('minlength')" class="mb-0">Minimum length is 3</p>
+                <p *ngIf="registerForm.get('first_name')?.getError('maxlength')" class="mb-0">Maximum length is 12 </p>
+                <img src="./assets/images/wrong.svg" width="2%" alt="">
+            </div>
+            <div class="alert alert-success p-2 d-flex flex-row justify-content-between" *ngIf="!registerForm.get('first_name')?.errors && registerForm.get('first_name')?.touched">
+                <p class="m-0">Success</p>
+                <img src="./assets/images/right.svg" width="2%" alt="">
+
+            </div>
+        </div>
+        <div class="form-group mb-3 form-floating">
+            <input type="text"  id="floatingInput2" class="form-control mb-1" placeholder="Enter Your Last Name" id="last-name" formControlName="last_name">
+            <label for="last-name" for="floatingInput2" class="text-muted"> Last Name </label>
+            <div *ngIf="registerForm.get('last_name')?.errors && registerForm.get('last_name')?.touched" class="alert alert-danger p-2 d-flex flex-row justify-content-between">
+                <p *ngIf="registerForm.get('last_name')?.getError('required') " class="mb-0">This field is required</p>
+                <p *ngIf="registerForm.get('last_name')?.getError('minlength')" class="mb-0">Minimum length is 3</p>
+                <p *ngIf="registerForm.get('last_name')?.getError('maxlength')" class="mb-0">Maximum length is 12 </p>
+                <img src="./assets/images/wrong.svg" width="2%" alt="">
+
+            </div>
+            <div class="alert alert-success p-2 d-flex flex-row justify-content-between" *ngIf="!registerForm.get('last_name')?.errors && registerForm.get('last_name')?.touched">
+                <p class="m-0">Success</p>
+                <img src="./assets/images/right.svg" width="2%" alt="">
+            </div>
+        </div>
+        <div class="form-group mb-3 form-floating">
+            <input type="email" id="floatingInput3" class="form-control mb-1" placeholder="Enter Your Email" id="email" formControlName="email">
+            <label for="email" class="text-muted" for="floatingInput3"> E-mail </label>
+            <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger p-2 d-flex flex-row justify-content-between">
+                <p *ngIf="registerForm.get('email')?.getError('required')" class="mb-0">This field is required</p>
+                <p *ngIf="registerForm.get('email')?.getError('email')" class="mb-0">Email is not valid</p>
+                <img src="./assets/images/wrong.svg" width="2%" alt="">
+
+            </div>
+            <div class="alert alert-success p-2 d-flex flex-row justify-content-between" *ngIf="!registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                <p class="m-0">Success</p>
+                <img src="./assets/images/right.svg" width="2%" alt="">
+            </div>
+        </div>
+        <div class="form-group mb-3 form-floating">
+            <input type="password"  id="floatingInput4" class="form-control mb-1" placeholder="Enter Password" id="password" formControlName="password">
+            <label for="password" for="floatingInput4" class="text-muted"> Password </label>
+            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger p-2 d-flex flex-row justify-content-between">
+                <p *ngIf="registerForm.get('password')?.getError('required')" class="mb-0">This field is required</p>
+                <p *ngIf="registerForm.get('password')?.getError('pattern')" class="mb-0">Invalid Password</p>
+                <img src="./assets/images/wrong.svg" width="2%" alt="">
+
+            </div>
+            <div class="alert alert-success p-2 d-flex flex-row justify-content-between" *ngIf="!registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                <p class="m-0">Success</p>
+                <img src="./assets/images/right.svg" width="2%" alt="">
+            </div>
+        </div>
+        <div class="form-group mb-3 form-floating">
+            <input type="number"  id="floatingInput5" class="form-control mb-1" placeholder="Enter Your Age" id="age" formControlName="age" (change)="registerForm.get('age')?.touched">
+            <label for="age" class="text-muted"  for="floatingInput5"> Age </label>
+            <div *ngIf="registerForm.get('age')?.errors && registerForm.get('age')?.touched" class="alert alert-danger p-2 d-flex flex-row justify-content-between">
+                <p *ngIf="registerForm.get('age')?.getError('required')" class="mb-0">This field is required</p>
+                <p *ngIf="registerForm.get('age')?.getError('min')" class="mb-0">Minimum age is 18</p>
+                <p *ngIf="registerForm.get('age')?.getError('max')" class="mb-0">Maximum age is 40</p>
+                <img src="./assets/images/wrong.svg" width="2%" alt="">
+
+            </div>
+            <div class="alert alert-success p-2 d-flex flex-row justify-content-between" *ngIf="!registerForm.get('age')?.errors && registerForm.get('age')?.touched">
+                <p class="m-0">Success</p>
+                <img src="./assets/images/right.svg" width="2%" alt="">
+            </div>
+        </div>
+        <button  [disabled]="!registerForm.valid || isLoading" class="btn btn-info ms-auto d-flex"> 
+            <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+           <span *ngIf="!isLoading">Sign Up </span> 
+        
+        </button>
+    </form>
+</div>

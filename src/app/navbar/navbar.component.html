@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-2" routerLink=""><img src="../../assets/images/logo-dark(1).webp" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-1" *ngIf="isLogin">
+         
+          <li class="nav-item">
+            <a class="nav-link" routerLink="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="movies">Movies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="tvShow">TvShow</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="people">People</a>
+          </li>
+          
+        
+       
+        </ul>
+        <div class="text-center mt-1 namefont fs-2 text-info" *ngIf="isLogin">Hello {{userName}}</div>
+
+        <div class="d-flex align-items-center mt-2 ms-auto">
+          <ul class="list-unstyled d-flex mb-0">
+            <li class="mx-2">
+              <a href=""> <i class="fab fa-facebook fs-5 text-white s-icon"></i> </a>
+              
+            </li>
+            <li  class="mx-2">
+              <a href=""><i class="fab fa-twitter fs-5 text-white s-icon"></i></a>
+              
+            </li>
+            <li  class="mx-2">
+              <a href=""><i class="fab fa-instagram fs-5 text-white s-icon"></i></a>
+              
+            </li>
+            <li  class="mx-2">
+              <a href=""><i class="fab fa-youtube fs-5 text-white s-icon"></i></a>
+            </li>
+
+          </ul>
+          <ul class="d-flex list-unstyled mb-0 me-auto">
+            <li *ngIf="!isLogin">
+              <a routerLink="register" class="text-decoration-none text-muted mx-2 white">Register</a>
+            </li>
+            <li *ngIf="!isLogin"> 
+              <a routerLink="login" class="text-decoration-none text-muted mx-2 white">Login</a>
+            </li>
+            <li *ngIf="isLogin" (click)="logOut()" class="mt-2 pt-1 pointer">
+              <p class="text-decoration-none text-muted mx-2 white">Logout</p>
+            </li>
+          </ul>
+        </div>
+       
+      </div>
+    </div>
+  </nav>

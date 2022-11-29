@@ -1,0 +1,37 @@
+
+@import "../../scss/variables";
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+.nav-link {
+    &:hover {
+        color: $fontColor ;
+        font-size: larger;
+    }
+}
+
+.white:hover {
+    color: $fontColor !important;
+    font-size: large;
+
+}
+.fa-facebook:hover{
+    color: #0165E1 !important;
+}
+.fa-twitter:hover{
+    color: #1DA1F2 !important;
+}
+.fa-instagram:hover{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) !important;
+}
+.fa-youtube:hover{
+    color: red !important;
+}
+.navbar-brand:hover{
+  transform: scale(1.2);
+
+}
+.namefont{
+    font-family: 'Permanent Marker' !important;
+}
+.pointer{
+    cursor: pointer;
+}
